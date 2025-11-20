@@ -158,9 +158,12 @@
 		const [charsEl, wordsEl, linesEl] = document.querySelectorAll('.counter');
 		
 		if ("Service Worker" in navigator) {
-			window.addEventListener("load", function() {
-				navigator.serviceWorker.register("/sw.js").then(res => console.log("service worker registered")).catch(err => console.log("service worker not registered", err))
-			})
+			window.addEventListener("load", () => {
+				navigator.serviceWorker.register("sw.js").then(registration => {console.log("service worker registered", registration.scope);
+				}).catch(error => {
+					console.log("service worker registration faield", error);
+				});
+			});
 		}
 		
 		// Autosave to local storage
