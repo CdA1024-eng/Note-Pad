@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Notes</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="manifest" href="/manifest.json">
+	<link rel="manifest" href="manifest.json">
 	<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80' fill='%238aab55'>🅐</text></svg>">
 	<style>
 		:root {
@@ -159,7 +159,7 @@
 		
 		if ("Service Worker" in navigator) {
 			window.addEventListener("load", () => {
-				navigator.serviceWorker.register("/sw.js").then(registration => {console.log("service worker registered", registration.scope);
+				navigator.serviceWorker.register("sw.js").then(registration => {console.log("service worker registered", registration.scope);
 				}).catch(error => {
 					console.log("service worker registration faield", error);
 				});
