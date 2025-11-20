@@ -6,13 +6,13 @@ self.addEventListener("install", installEvent => {
 		caches.open(staticdev).then(cache => {
 			cache.addAll(assets)
 		})
-	)
-})
+	);
+});
 
 self.addEventListener("fetch", fetchEvent => {
 	fetchEvent.respondWith(
-		caches.match(fetchEvent.request).then(res => {
-			return res || fetch(fetchEvent.request)
+		caches.match(fetchEvent.request).then(response => {
+			return response || fetch(fetchEvent.request)
 		})
-	)
-})
+	);
+});
