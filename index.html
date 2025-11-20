@@ -3,8 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Notes Test</title>
+	<title>Notes</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="manifest" href="manifest.json">
 	<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80' fill='%238aab55'>🅐</text></svg>">
 	<style>
 		:root {
@@ -156,6 +157,12 @@
 		const KEY = 'MyNoteString';
 		const [charsEl, wordsEl, linesEl] = document.querySelectorAll('.counter');
 		
+		if ("Service Worker" in navigator) {
+			window.addEventListener("load", function() {
+				navigator.serviceWorker.register("/sw.js").then(res => console.log("service worker registered")).catch(err => console.log("service worker not registered", err))
+			})
+		}
+		
 		// Autosave to local storage
 		plaintext.value = localStorage.getItem(KEY) || '';
 		// Placing caret at the end
@@ -215,10 +222,6 @@
 			charsEl.textContent = plaintext.value.length + ' characters';
 			wordsEl.textContent = plaintext.value === "" ? 0 : plaintext.value.replace(/\s+/g, ' ').split(' ').length + ' words';
 			linesEl.textContent = plaintext.value.split(/\n/).length + ' lines';
-		}
-		
-		function updCount () {
-			
 		}
 		
 		//Event listener for buttons
